@@ -1,6 +1,4 @@
-"""
-Run variable layout script first
-"""
+# Run variable layout script first
 
 columns <- read.csv("data/2023-variable-layout.csv")
 
@@ -13,5 +11,6 @@ columns$File_Width <- sapply(1:nrow(columns), function(y) {
 columns <- columns[columns$File_Width > 0, ]
 
 
-responses <- read.fwf("data/LLCP2023ASC/LLCP2023.ASC", widths = columns$File_Width, col.names = columns$Variable_Name)
+responses <- read.fwf("data/raw/LLCP2023.ASC", widths = columns$File_Width, col.names = columns$Variable_Name)
 print("read successfully")
+write.csv(responses, "data/processed/LLCP2023_responses.csv", row.names = FALSE)

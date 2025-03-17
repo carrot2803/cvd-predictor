@@ -25,4 +25,7 @@
             }
         ]
     },
+    "python.analysis.inlayHints.functionReturnTypes": true,
+    "python.analysis.inlayHints.variableTypes": true,
+    "editor.formatOnSave": true,
 }
