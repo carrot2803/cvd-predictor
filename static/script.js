@@ -11,7 +11,8 @@ document.addEventListener("DOMContentLoaded", function () {
             data[key] = value;
         });
 
-        data["Sex"] = (data["Sex"] === "Male") ? 1 : 0;
+        const numericalFields = ["Sex", "GeneralHealth"];
+        numericalFields.forEach(field => data[field] = parseInt(data[field], 10));
 
         // Convert Yes/No responses to boolean (1/0)
         const booleanFields = [
