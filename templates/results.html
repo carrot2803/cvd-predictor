@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Results</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-md">
+        <h1 class="text-2xl font-bold mb-4 text-center">Survey Results</h1>
+        <p class="text-gray-700 text-lg text-center mb-4">Your heart disease probability is:</p>
+        <div class="text-center">
+            <span id="resultDisplay" class="text-4xl font-bold text-blue-600">--%</span>
+        </div>
+        <div class="mt-6 text-center">
+            <a href="/" class="text-blue-500 hover:underline">Take another survey</a>
+        </div>
+    </div>
+
+    <script>
+        const result = sessionStorage.getItem("surveyResult");
+
+        if (result !== null) {
+            document.getElementById("resultDisplay").textContent = `${(result * 100).toFixed(2)}%`;
+        } else {
+            document.getElementById("resultDisplay").textContent = "No result available.";
+        }
+    </script>
+</body>
+
+</html>

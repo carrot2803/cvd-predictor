@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector("form");
+
     form.addEventListener("submit", async function (event) {
         event.preventDefault(); // Prevent default form submission
 
@@ -10,12 +11,14 @@ document.addEventListener("DOMContentLoaded", function () {
             data[key] = value;
         });
 
+        // Convert necessary fields to numbers
         const numericalFields = [
             "Sex", "GeneralHealth", "PhysicalHealthDays", "MentalHealthDays",
             "LastCheckupTime", "HadDiabetes", "SmokerStatus", "AgeCategory", "AlcoholDrinkers"
         ];
         numericalFields.forEach(field => data[field] = parseInt(data[field], 10));
 
+        // Convert Height to Meters
         let feet = parseInt(data["HeightFeet"], 10);
         let inches = parseInt(data["HeightInches"], 10);
         data["HeightInMeters"] = ((feet * 12) + inches) * 0.0254; // Convert height to meters
@@ -30,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Calculate BMI
         data["BMI"] = data["WeightInKilograms"] / (data["HeightInMeters"] ** 2);
 
-        // Convert Yes/No responses to boolean (1/0)
+        // Convert Yes/No fields to 1/0
         const booleanFields = [
             "PhysicalActivities", "HadAsthma", "HadSkinCancer", "HadCOPD",
             "HadDepressiveDisorder", "HadKidneyDisease", "HadArthritis",
@@ -41,9 +44,9 @@ document.addEventListener("DOMContentLoaded", function () {
             else if (data[field] === "No") data[field] = 0;
         });
 
-        data["Mobility"] = (data["Mobility"] === 1) ? 1 : 0;
+        data["Mobility"] = data["Mobility"] === "1" ? 1 : 0;
 
-        // Define the desired order
+        // Define the order of keys
         const orderedKeys = [
             "Sex", "GeneralHealth", "PhysicalHealthDays", "MentalHealthDays",
             "LastCheckupTime", "PhysicalActivities", "HadAsthma", "HadSkinCancer",
@@ -53,7 +56,6 @@ document.addEventListener("DOMContentLoaded", function () {
             "Sensory Impairments", "Vaccinated", "Mobility"
         ];
 
-        // Create a new ordered object
         let orderedData = {};
         orderedKeys.forEach(key => {
             if (key in data) {
@@ -73,8 +75,9 @@ document.addEventListener("DOMContentLoaded", function () {
             if (response.ok) {
                 const result = await response.json();
                 console.log("Response from server:", result);
+
+                sessionStorage.setItem("surveyResult", result.message);
                 window.location.href = "/results";
-                alert("Survey submitted successfully!");
             } else {
                 alert("Failed to submit survey. Please try again.");
             }

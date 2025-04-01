@@ -15,14 +15,16 @@ def home() -> str:
 
 @app.route("/predict", methods=["POST"])
 def predict() -> Response:
-    print(request.json)
     df = pl.DataFrame(request.json)
-    # print(df.shape)
     matrix: np.ndarray = model.predict_proba(df[0])
     prediction: np.ndarray = matrix[:, 1][0]
     print("Prediction is ", prediction)
     return jsonify(message=prediction)
 
+
+@app.route("/results")
+def results() -> str:
+    return render_template("results.html")
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
