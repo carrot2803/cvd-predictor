@@ -13,7 +13,7 @@ def home() -> str:
 @app.route("/predict", methods=["POST"])
 def predict():
     print(request.json)
-    return jsonify(message="Yes")
+    return jsonify(message=request.json)
 
 
 if __name__ == "__main__":

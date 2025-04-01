@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", function () {
             data[key] = value;
         });
 
+        data["Sex"] = (data["Sex"] === "Male") ? 1 : 0;
+
         // Convert Yes/No responses to boolean (1/0)
         const booleanFields = [
             "PhysicalActivities", "HadAsthma", "HadSkinCancer", "HadCOPD",
@@ -35,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (response.ok) {
                 const result = await response.json();
                 console.log("Response from server:", result);
+                window.location.href = "/results";
                 alert("Survey submitted successfully!");
             } else {
                 alert("Failed to submit survey. Please try again.");
