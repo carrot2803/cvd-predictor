@@ -11,14 +11,17 @@ document.addEventListener("DOMContentLoaded", function () {
             data[key] = value;
         });
 
-        const numericalFields = ["Sex", "GeneralHealth"];
+        const numericalFields = [
+            "Sex", "GeneralHealth", "PhysicalHealthDays", "MentalHealthDays",
+            "LastCheckupTime", "MentalHealthDays", "HadDiabetes"
+        ];
         numericalFields.forEach(field => data[field] = parseInt(data[field], 10));
 
         // Convert Yes/No responses to boolean (1/0)
         const booleanFields = [
             "PhysicalActivities", "HadAsthma", "HadSkinCancer", "HadCOPD",
             "HadDepressiveDisorder", "HadKidneyDisease", "HadArthritis",
-            "HadDiabetes", "HaveHighCholesterol", "SensoryImpairments", "Vaccinated"
+            "HaveHighCholesterol", "SensoryImpairments", "Vaccinated"
         ];
         booleanFields.forEach(field => {
             if (data[field] === "Yes") data[field] = 1;

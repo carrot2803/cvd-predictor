@@ -70,10 +70,10 @@
                 <select id="LastCheckupTime" name="LastCheckupTime" required
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none">
                     <option value="">Select Time Frame</option>
-                    <option value="Less than a year">Less than a year</option>
-                    <option value="1-2 years">1-2 years</option>
-                    <option value="More than 2 years">More than 2 years</option>
-                    <option value="Never">Never</option>
+                    <option value=1>Less than a year</option>
+                    <option value=2>1-2 years</option>
+                    <option value=3>More than 2 years</option>
+                    <option value=4>Never</option>
                 </select>
             </div>
 
@@ -176,8 +176,10 @@
                 <select id="HadDiabetes" name="HadDiabetes" required
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none">
                     <option value="">Select an option</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
+                    <option value="1">Yes</option>
+                    <option value="2">Yes but only during pregnancy</option>
+                    <option value="3">No</option>
+                    <option value="4">No but pre-diabetes</option>
                 </select>
             </div>
 
@@ -309,7 +311,6 @@
         </form>
     </div>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
-
 </body>
 
 </html>
