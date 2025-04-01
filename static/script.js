@@ -6,49 +6,68 @@ document.addEventListener("DOMContentLoaded", function () {
         let formData = new FormData(form);
         let data = {};
 
-        // Convert FormData to a regular object
         formData.forEach((value, key) => {
             data[key] = value;
         });
 
         const numericalFields = [
             "Sex", "GeneralHealth", "PhysicalHealthDays", "MentalHealthDays",
-            "LastCheckupTime", "MentalHealthDays", "HadDiabetes"
+            "LastCheckupTime", "HadDiabetes", "SmokerStatus", "AgeCategory", "AlcoholDrinkers"
         ];
         numericalFields.forEach(field => data[field] = parseInt(data[field], 10));
+
+        let feet = parseInt(data["HeightFeet"], 10);
+        let inches = parseInt(data["HeightInches"], 10);
+        data["HeightInMeters"] = ((feet * 12) + inches) * 0.0254; // Convert height to meters
+        delete data["HeightFeet"];
+        delete data["HeightInches"];
+
+        // Convert Weight (lbs) to Kilograms
+        let pounds = parseFloat(data["WeightPounds"]);
+        data["WeightInKilograms"] = pounds * 0.453592; // Convert weight to kg
+        delete data["WeightPounds"];
+
+        // Calculate BMI
+        data["BMI"] = data["WeightInKilograms"] / (data["HeightInMeters"] ** 2);
 
         // Convert Yes/No responses to boolean (1/0)
         const booleanFields = [
             "PhysicalActivities", "HadAsthma", "HadSkinCancer", "HadCOPD",
             "HadDepressiveDisorder", "HadKidneyDisease", "HadArthritis",
-            "HaveHighCholesterol", "SensoryImpairments", "Vaccinated"
+            "HaveHighCholesterol", "Sensory Impairments", "Vaccinated"
         ];
         booleanFields.forEach(field => {
             if (data[field] === "Yes") data[field] = 1;
             else if (data[field] === "No") data[field] = 0;
         });
 
+        data["Mobility"] = (data["Mobility"] === 1) ? 1 : 0;
 
-        let feet = parseInt(data["HeightFeet"], 10);
-        let inches = parseInt(data["HeightInches"], 10);
-        data["HeightInMeters"] = ((feet * 12) + inches) * 0.0254; // 1 inch = 0.0254 meters
-        delete data["HeightFeet"];
-        delete data["HeightInches"];
+        // Define the desired order
+        const orderedKeys = [
+            "Sex", "GeneralHealth", "PhysicalHealthDays", "MentalHealthDays",
+            "LastCheckupTime", "PhysicalActivities", "HadAsthma", "HadSkinCancer",
+            "HadCOPD", "HadDepressiveDisorder", "HadKidneyDisease", "HadArthritis",
+            "HadDiabetes", "SmokerStatus", "AgeCategory", "HeightInMeters",
+            "WeightInKilograms", "BMI", "AlcoholDrinkers", "HaveHighCholesterol",
+            "Sensory Impairments", "Vaccinated", "Mobility"
+        ];
 
-        // Convert Weight (lbs) to Kilograms
-        let pounds = parseFloat(data["WeightPounds"]);
-        data["WeightInKilograms"] = pounds * 0.453592; // 1 lb = 0.453592 kg
-        delete data["WeightPounds"];
+        // Create a new ordered object
+        let orderedData = {};
+        orderedKeys.forEach(key => {
+            if (key in data) {
+                orderedData[key] = data[key];
+            }
+        });
 
+        console.log("Ordered Data:", orderedData); // Debugging
 
-        console.log("Cleaned Data:", data); // Debugging
-
-        // Send Data via Fetch API
         try {
             const response = await fetch("/predict", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data)
+                body: JSON.stringify(orderedData)
             });
 
             if (response.ok) {
