@@ -1,24 +1,48 @@
-from sklearn.metrics import accuracy_score, f1_score, recall_score
-from sklearn.metrics import confusion_matrix, precision_score, roc_auc_score
-import plotly.graph_objects as go
 import polars as pl
+from sklearn.calibration import LabelEncoder
 import numpy as np
+import plotly.graph_objects as go
 
 
-def get_metrics(y_true: np.ndarray, y_pred: np.ndarray, model_name: str) -> dict:
-    tn, fp, fn, tp = confusion_matrix(y_true, y_pred).ravel()
-    return {
-        "Model": model_name,
-        "Accuracy": accuracy_score(y_true, y_pred),
-        "Precision": precision_score(y_true, y_pred, zero_division=1),
-        "Recall": recall_score(y_true, y_pred),
-        "F1 Score": f1_score(y_true, y_pred),
-        "ROC AUC": roc_auc_score(y_true, y_pred),
-        # "True Negative": tn,
-        # "False Positive": fp,
-        # "False Negative": fn,
-        # "True Positive": tp,
-    }
+def correlation_matrix(df: pl.DataFrame, drop_cols: list[str]) -> go.Figure:
+    label_encoders: dict = {}
+    copy = df.drop(drop_cols)
+
+    for col in copy.columns:
+        le = LabelEncoder()
+        encoded_col: np.ndarray = le.fit_transform(copy[col].to_numpy())
+        copy: pl.DataFrame = copy.with_columns(pl.Series(col, encoded_col))
+        label_encoders[col] = le
+
+    correlation_matrix: np.ndarray = copy.corr().to_numpy()
+    formatted_text: list[list[str]] = [
+        [f"{value:.2f}" for value in row] for row in correlation_matrix
+    ]
+
+    fig = go.Figure(
+        data=go.Heatmap(
+            z=correlation_matrix,
+            x=copy.columns,
+            y=copy.columns,
+            colorscale="rdbu",
+            zmin=-1,
+            zmax=1,
+            reversescale=True,
+            text=formatted_text,
+            texttemplate="%{text}",
+            colorbar=dict(title="Correlation"),
+        )
+    )
+
+    fig.update_layout(
+        title="Feature Correlation Heatmap",
+        xaxis=dict(tickangle=45, title="Features"),
+        yaxis=dict(title="Features"),
+        width=900,
+        height=900,
+    )
+
+    return fig
 
 
 def plot_feature_importances(model, X, top_n=15, model_name="Model") -> None:
@@ -60,7 +84,6 @@ def plot_feature_importances(model, X, top_n=15, model_name="Model") -> None:
             yaxis_title="Features",
             margin=dict(l=150),
         )
-
         fig.show()
     else:
         print(f"{model_name} does not have feature_importances_ attribute.")
