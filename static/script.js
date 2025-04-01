@@ -28,6 +28,19 @@ document.addEventListener("DOMContentLoaded", function () {
             else if (data[field] === "No") data[field] = 0;
         });
 
+
+        let feet = parseInt(data["HeightFeet"], 10);
+        let inches = parseInt(data["HeightInches"], 10);
+        data["HeightInMeters"] = ((feet * 12) + inches) * 0.0254; // 1 inch = 0.0254 meters
+        delete data["HeightFeet"];
+        delete data["HeightInches"];
+
+        // Convert Weight (lbs) to Kilograms
+        let pounds = parseFloat(data["WeightPounds"]);
+        data["WeightInKilograms"] = pounds * 0.453592; // 1 lb = 0.453592 kg
+        delete data["WeightPounds"];
+
+
         console.log("Cleaned Data:", data); // Debugging
 
         // Send Data via Fetch API

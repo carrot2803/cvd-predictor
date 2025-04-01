@@ -208,26 +208,28 @@
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none" />
             </div>
 
-            <!-- Height In Meters -->
+            <!-- Height in Feet & Inches -->
             <div class="mb-4">
-                <label for="HeightInMeters" class="block text-gray-700 text-sm font-bold mb-2">
-                    Height (in meters)
+                <label for="HeightFeet" class="block text-gray-700 text-sm font-bold mb-2">
+                    Height (Feet & Inches)
                 </label>
-                <input type="number" step="0.01" id="HeightInMeters" name="HeightInMeters" required
-                    placeholder="e.g., 1.75"
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none" />
+                <div class="flex space-x-2">
+                    <input type="number" id="HeightFeet" name="HeightFeet" min="0" required placeholder="Feet"
+                        class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 focus:outline-none" />
+                    <input type="number" id="HeightInches" name="HeightInches" min="0" max="11" required
+                        placeholder="Inches"
+                        class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 focus:outline-none" />
+                </div>
             </div>
 
-            <!-- Weight In Kilograms -->
+            <!-- Weight in Pounds -->
             <div class="mb-4">
-                <label for="WeightInKilograms" class="block text-gray-700 text-sm font-bold mb-2">
-                    Weight (in kilograms)
+                <label for="WeightPounds" class="block text-gray-700 text-sm font-bold mb-2">
+                    Weight (lbs)
                 </label>
-                <input type="number" step="0.1" id="WeightInKilograms" name="WeightInKilograms" required
-                    placeholder="e.g., 70"
+                <input type="number" id="WeightPounds" name="WeightPounds" required step="0.1" placeholder="e.g., 150"
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none" />
             </div>
-
 
             <!-- Alcohol Drinkers -->
             <div class="mb-4">
