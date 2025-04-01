@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Healthcare Survey</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="w-full max-w-3xl bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <h1 class="text-2xl font-bold mb-6 text-center">Healthcare Survey</h1>
+        <form action="/predict" method="POST">
+            <!-- Sex -->
+            <div class="mb-4">
+                <label for="Sex" class="block text-gray-700 text-sm font-bold mb-2">
+                    Sex
+                </label>
+                <select id="Sex" name="Sex"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none">
+                    <option value="">Select Sex</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <!-- General Health -->
+            <div class="mb-4">
+                <label for="GeneralHealth" class="block text-gray-700 text-sm font-bold mb-2">
+                    General Health
+                </label>
+                <select id="GeneralHealth" name="GeneralHealth"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none">
+                    <option value="">Select Health Status</option>
+                    <option value="Excellent">Excellent</option>
+                    <option value="Very Good">Very Good</option>
+                    <option value="Good">Good</option>
+                    <option value="Fair">Fair</option>
+                    <option value="Poor">Poor</option>
+                </select>
+            </div>
+
+            <!-- Physical Health Days -->
+            <div class="mb-4">
+                <label for="PhysicalHealthDays" class="block text-gray-700 text-sm font-bold mb-2">
+                    Number of Days with Physical Health Issues (in last 30 days)
+                </label>
+                <input type="number" id="PhysicalHealthDays" name="PhysicalHealthDays" min="0" max="30"
+                    placeholder="e.g., 5"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none" />
+            </div>
+
+            <!-- Mental Health Days -->
+            <div class="mb-4">
+                <label for="MentalHealthDays" class="block text-gray-700 text-sm font-bold mb-2">
+                    Number of Days with Mental Health Issues (in last 30 days)
+                </label>
+                <input type="number" id="MentalHealthDays" name="MentalHealthDays" min="0" max="30"
+                    placeholder="e.g., 3"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none" />
+            </div>
+
+            <!-- Last Checkup Time -->
+            <div class="mb-4">
+                <label for="LastCheckupTime" class="block text-gray-700 text-sm font-bold mb-2">
+                    When was your last checkup?
+                </label>
+                <select id="LastCheckupTime" name="LastCheckupTime"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none">
+                    <option value="">Select Time Frame</option>
+                    <option value="Less than a year">Less than a year</option>
+                    <option value="1-2 years">1-2 years</option>
+                    <option value="More than 2 years">More than 2 years</option>
+                    <option value="Never">Never</option>
+                </select>
+            </div>
+
+            <!-- Physical Activities -->
+            <div class="mb-4">
+                <label for="PhysicalActivities" class="block text-gray-700 text-sm font-bold mb-2">
+                    Do you engage in regular physical activities?
+                </label>
+                <select id="PhysicalActivities" name="PhysicalActivities"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none">
+                    <option value="">Select an option</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <!-- Had Asthma -->
+            <div class="mb-4">
+                <label for="HadAsthma" class="block text-gray-700 text-sm font-bold mb-2">
+                    Have you ever been diagnosed with Asthma?
+                </label>
+                <select id="HadAsthma" name="HadAsthma"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none">
+                    <option value="">Select an option</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <!-- Had Skin Cancer -->
+            <div class="mb-4">
+                <label for="HadSkinCancer" class="block text-gray-700 text-sm font-bold mb-2">
+                    Have you ever been diagnosed with Skin Cancer?
+                </label>
+                <select id="HadSkinCancer" name="HadSkinCancer"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none">
+                    <option value="">Select an option</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <!-- Had COPD -->
+            <div class="mb-4">
+                <label for="HadCOPD" class="block text-gray-700 text-sm font-bold mb-2">
+                    Have you ever been diagnosed with COPD?
+                </label>
+                <select id="HadCOPD" name="HadCOPD"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none">
+                    <option value="">Select an option</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <!-- Had Depressive Disorder -->
+            <div class="mb-4">
+                <label for="HadDepressiveDisorder" class="block text-gray-700 text-sm font-bold mb-2">
+                    Have you ever been diagnosed with a Depressive Disorder?
+                </label>
+                <select id="HadDepressiveDisorder" name="HadDepressiveDisorder"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none">
+                    <option value="">Select an option</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <!-- Had Kidney Disease -->
+            <div class="mb-4">
+                <label for="HadKidneyDisease" class="block text-gray-700 text-sm font-bold mb-2">
+                    Have you ever been diagnosed with Kidney Disease?
+                </label>
+                <select id="HadKidneyDisease" name="HadKidneyDisease"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none">
+                    <option value="">Select an option</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <!-- Had Arthritis -->
+            <div class="mb-4">
+                <label for="HadArthritis" class="block text-gray-700 text-sm font-bold mb-2">
+                    Have you ever been diagnosed with Arthritis?
+                </label>
+                <select id="HadArthritis" name="HadArthritis"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none">
+                    <option value="">Select an option</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <!-- Had Diabetes -->
+            <div class="mb-4">
+                <label for="HadDiabetes" class="block text-gray-700 text-sm font-bold mb-2">
+                    Have you ever been diagnosed with Diabetes?
+                </label>
+                <select id="HadDiabetes" name="HadDiabetes"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none">
+                    <option value="">Select an option</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <!-- Smoker Status -->
+            <div class="mb-4">
+                <label for="SmokerStatus" class="block text-gray-700 text-sm font-bold mb-2">
+                    Smoker Status
+                </label>
+                <select id="SmokerStatus" name="SmokerStatus"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none">
+                    <option value="">Select Status</option>
+                    <option value="Current Smoker">Current Smoker</option>
+                    <option value="Former Smoker">Former Smoker</option>
+                    <option value="Non-Smoker">Non-Smoker</option>
+                </select>
+            </div>
+
+            <!-- Age Category -->
+            <div class="mb-4">
+                <label for="AgeCategory" class="block text-gray-700 text-sm font-bold mb-2">
+                    Age Category
+                </label>
+                <select id="AgeCategory" name="AgeCategory"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none">
+                    <option value="">Select Age Category</option>
+                    <option value="Under 18">Under 18</option>
+                    <option value="18-29">18-29</option>
+                    <option value="30-44">30-44</option>
+                    <option value="45-64">45-64</option>
+                    <option value="65 or above">65 or above</option>
+                </select>
+            </div>
+
+            <!-- Height In Meters -->
+            <div class="mb-4">
+                <label for="HeightInMeters" class="block text-gray-700 text-sm font-bold mb-2">
+                    Height (in meters)
+                </label>
+                <input type="number" step="0.01" id="HeightInMeters" name="HeightInMeters" placeholder="e.g., 1.75"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none" />
+            </div>
+
+            <!-- Weight In Kilograms -->
+            <div class="mb-4">
+                <label for="WeightInKilograms" class="block text-gray-700 text-sm font-bold mb-2">
+                    Weight (in kilograms)
+                </label>
+                <input type="number" step="0.1" id="WeightInKilograms" name="WeightInKilograms" placeholder="e.g., 70"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none" />
+            </div>
+
+            <!-- BMI -->
+            <div class="mb-4">
+                <label for="BMI" class="block text-gray-700 text-sm font-bold mb-2">
+                    Body Mass Index (BMI)
+                </label>
+                <input type="number" step="0.1" id="BMI" name="BMI" placeholder="e.g., 22.5"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none" />
+            </div>
+
+            <!-- Alcohol Drinkers -->
+            <div class="mb-4">
+                <label for="AlcoholDrinkers" class="block text-gray-700 text-sm font-bold mb-2">
+                    Do you consume alcohol?
+                </label>
+                <select id="AlcoholDrinkers" name="AlcoholDrinkers"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none">
+                    <option value="">Select an option</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                    <option value="Occasionally">Occasionally</option>
+                </select>
+            </div>
+
+            <!-- Have High Cholesterol -->
+            <div class="mb-4">
+                <label for="HaveHighCholesterol" class="block text-gray-700 text-sm font-bold mb-2">
+                    Have you been diagnosed with high cholesterol?
+                </label>
+                <select id="HaveHighCholesterol" name="HaveHighCholesterol"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none">
+                    <option value="">Select an option</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <!-- Sensory Impairments -->
+            <div class="mb-4">
+                <label for="SensoryImpairments" class="block text-gray-700 text-sm font-bold mb-2">
+                    Do you have any sensory impairments?
+                </label>
+                <select id="SensoryImpairments" name="SensoryImpairments"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none">
+                    <option value="">Select an option</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <!-- Vaccinated -->
+            <div class="mb-4">
+                <label for="Vaccinated" class="block text-gray-700 text-sm font-bold mb-2">
+                    Are you vaccinated (e.g., for COVID-19)?
+                </label>
+                <select id="Vaccinated" name="Vaccinated"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none">
+                    <option value="">Select an option</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <!-- Mobility -->
+            <div class="mb-4">
+                <label for="Mobility" class="block text-gray-700 text-sm font-bold mb-2">
+                    How would you describe your mobility?
+                </label>
+                <select id="Mobility" name="Mobility"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none">
+                    <option value="">Select an option</option>
+                    <option value="No Difficulty">No Difficulty</option>
+                    <option value="Some Difficulty">Some Difficulty</option>
+                    <option value="Limited Mobility">Limited Mobility</option>
+                </select>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="flex items-center justify-center">
+                <button type="submit"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    Submit Survey
+                </button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
