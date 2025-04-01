@@ -191,9 +191,10 @@
                 <select id="SmokerStatus" name="SmokerStatus" required
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none">
                     <option value="">Select Status</option>
-                    <option value="Current Smoker">Current Smoker</option>
-                    <option value="Former Smoker">Former Smoker</option>
-                    <option value="Non-Smoker">Non-Smoker</option>
+                    <option value=1>Daily Smoker</option>
+                    <option value=2>Infrequent Smoker</option>
+                    <option value=3>Former Smoker</option>
+                    <option value=4>Non-Smoker</option>
                 </select>
             </div>
 
@@ -202,15 +203,9 @@
                 <label for="AgeCategory" class="block text-gray-700 text-sm font-bold mb-2">
                     Age Category
                 </label>
-                <select id="AgeCategory" name="AgeCategory" required
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none">
-                    <option value="">Select Age Category</option>
-                    <option value="Under 18">Under 18</option>
-                    <option value="18-29">18-29</option>
-                    <option value="30-44">30-44</option>
-                    <option value="45-64">45-64</option>
-                    <option value="65 or above">65 or above</option>
-                </select>
+                <input type="number" id="AgeCategory" name="AgeCategory" min="0" max="400" required
+                    placeholder="e.g., 18"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none" />
             </div>
 
             <!-- Height In Meters -->
@@ -242,9 +237,9 @@
                 <select id="AlcoholDrinkers" name="AlcoholDrinkers" required
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none">
                     <option value="">Select an option</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                    <option value="Occasionally">Occasionally</option>
+                    <option value=1>Yes</option>
+                    <option value=0>No</option>
+                    <option value=1>Occasionally</option>
                 </select>
             </div>
 
@@ -295,9 +290,9 @@
                 <select id="Mobility" name="Mobility" required
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none">
                     <option value="">Select an option</option>
-                    <option value="No Difficulty">No Difficulty</option>
-                    <option value="Some Difficulty">Some Difficulty</option>
-                    <option value="Limited Mobility">Limited Mobility</option>
+                    <option value=0>No Difficulty</option>
+                    <option value=1>Some Difficulty</option>
+                    <option value=1>Limited Mobility</option>
                 </select>
             </div>
 
