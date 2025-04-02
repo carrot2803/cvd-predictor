@@ -5,7 +5,8 @@ import polars as pl
 from xgboost import XGBClassifier
 
 app = Flask(__name__)
-model: XGBClassifier = pickle.load(open("models/xgb_cvd.pkl", "rb"))
+model = XGBClassifier()
+model.load_model("models/xgb_cvd.json")
 
 
 @app.route("/")
