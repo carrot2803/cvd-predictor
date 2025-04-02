@@ -19,7 +19,10 @@ document.addEventListener("DOMContentLoaded", function () {
         numericalFields.forEach(field => data[field] = parseInt(data[field], 10));
 
         let age = parseInt(data["AgeCategory"], 10);
-        data["AgeCategory"] = Math.floor((age - 18) / 5) + 1;
+        if (age>=80)
+            data["AgeCategory"] = 13
+        else
+            data["AgeCategory"] = Math.floor((age - 18) / 5) + 1;
 
 
         // Convert Height to Meters
