@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
         numericalFields.forEach(field => data[field] = parseInt(data[field], 10));
 
         let age = parseInt(data["AgeCategory"], 10);
-        if (age>=80)
+        if (age >= 80)
             data["AgeCategory"] = 13
         else
             data["AgeCategory"] = Math.floor((age - 18) / 5) + 1;
@@ -92,5 +92,41 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error("Error submitting form:", error);
             alert("An error occurred. Please check your internet connection.");
         }
+    });
+
+    const generalHealthSection = document.getElementById("generalHealth");
+    const lifestyleSection = document.getElementById("lifestyle");
+    const medicalHistorySection = document.getElementById("medicalHistory");
+    const generalHealthNextButton = generalHealthSection.querySelector(".next-btn");
+    const lifestyleBackButton = lifestyleSection.querySelector(".back-btn");
+    const lifestyleNextButton = lifestyleSection.querySelector(".next-btn");
+    const medicalHistoryBackButton = medicalHistorySection.querySelector(".back-btn");
+
+    generalHealthSection.style.display = "block";
+    lifestyleSection.style.display = "none";
+    medicalHistorySection.style.display = "none";
+
+    generalHealthNextButton.addEventListener("click", function () {
+        lifestyleSection.style.display = "block";
+        generalHealthSection.style.display = "none";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    lifestyleBackButton.addEventListener("click", function () {
+        generalHealthSection.style.display = "block";
+        lifestyleSection.style.display = "none";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    lifestyleNextButton.addEventListener("click", function () {
+        medicalHistorySection.style.display = "block";
+        lifestyleSection.style.display = "none";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    medicalHistoryBackButton.addEventListener("click", function () {
+        lifestyleSection.style.display = "block";
+        medicalHistorySection.style.display = "none";
+        window.scrollTo({ top: 0, behavior: "smooth" });
     });
 });
