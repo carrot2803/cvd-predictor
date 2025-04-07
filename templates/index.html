@@ -64,21 +64,6 @@
                     </div>
                 </div>
                 <div class="multi-question-row">
-                    <!-- General Health -->
-                    <div class="mb-4 md:w-1/2">
-                        <label for="GeneralHealth" class="general-question-bold-label">
-                            General Health
-                        </label>
-                        <select id="GeneralHealth" name="GeneralHealth" required class="selection-options">
-                            <option value="">Select Health Status</option>
-                            <option value=1>Excellent</option>
-                            <option value=2>Very Good</option>
-                            <option value=3>Good</option>
-                            <option value=4>Fair</option>
-                            <option value=5>Poor</option>
-                        </select>
-                    </div>
-
                     <!-- Last Checkup Time -->
                     <div class="mb-4 md:w-1/2">
                         <label for="LastCheckupTime" class="general-question-bold-label">
@@ -196,13 +181,13 @@
                     </label>
                     <div class="yes-no-container">
                         <label class="flex-1">
-                            <input type="radio" name="HadAsthma" value="Yes" required class="hidden peer">
+                            <input type="radio" name="HadAsthma" value="0" required class="hidden peer">
                             <div class="yes-no-option">
                                 Yes
                             </div>
                         </label>
                         <label class="flex-1">
-                            <input type="radio" name="HadAsthma" value="No" class="hidden peer">
+                            <input type="radio" name="HadAsthma" value="1" class="hidden peer">
                             <div class="yes-no-option">
                                 No
                             </div>
@@ -309,28 +294,6 @@
                         </label>
                         <label class="flex-1">
                             <input type="radio" name="HaveHighCholesterol" value="No" class="hidden peer">
-                            <div class="yes-no-option">
-                                No
-                            </div>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Had Depressive Disorder -->
-                <div class="yes-no-question">
-                    <label class="yes-no-question-label">
-                        Have you ever been diagnosed with any <strong>Depressive Disorders</strong> (e.g. depression,
-                        major depression, dysthymia, or minor depression) ?
-                    </label>
-                    <div class="yes-no-container">
-                        <label class="flex-1">
-                            <input type="radio" name="HadDepressiveDisorder" value="Yes" required class="hidden peer">
-                            <div class="yes-no-option">
-                                Yes
-                            </div>
-                        </label>
-                        <label class="flex-1">
-                            <input type="radio" name="HadDepressiveDisorder" value="No" class="hidden peer">
                             <div class="yes-no-option">
                                 No
                             </div>

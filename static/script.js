@@ -61,6 +61,35 @@ document.addEventListener("DOMContentLoaded", function () {
         return isValid;
     }
 
+    function computeGeneralHealthScore(data) {
+        let score = 4;
+        const normalizedHadAsthma = (data.HadAsthma === 1) ? 1 : 0;
+        const normalizedHadDiabetes = [1, 2].includes(data.HadDiabetes) ? 1 : 0;
+        const chronicConditions = [
+            normalizedHadAsthma,
+            data.HadSkinCancer || 0,
+            data.HadCOPD || 0,
+            data.HadKidneyDisease || 0,
+            data.HadArthritis || 0,
+            normalizedHadDiabetes,
+            data.HadDepressiveDisorder || 0
+        ];
+        const chronicCount = chronicConditions.reduce((sum, val) => sum + val, 0);
+
+        // Apply penalty logic
+        if (data.PhysicalHealthDays > 20 || data.MentalHealthDays > 20) score -= 1;
+        if (data.PhysicalHealthDays > 27 || data.MentalHealthDays > 27) score -= 1;
+        if (chronicCount >= 2) score -= 1;
+        if (chronicCount >= 4) score -= 1;
+        if (data.SmokerStatus >= 2 || data.AlcoholDrinkers === 1) score -= 1;
+        if (!data.PhysicalActivities) score -= 1;
+        if (data.BMI < 18.5 || data.BMI >= 30) score -= 1;
+        if (data["Sensory Impairments"] === 1 || data["Mobility"] === 1) score -= 1;
+
+        return Math.max(1, Math.min(4, score));
+    }
+
+
     form.addEventListener("submit", async function (event) {
         event.preventDefault(); // Prevent default form submission
 
@@ -80,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Convert necessary fields to numbers
             const numericalFields = [
-                "Sex", "GeneralHealth", "PhysicalHealthDays", "MentalHealthDays",
+                "Sex", "PhysicalHealthDays", "MentalHealthDays", "HadAsthma",
                 "LastCheckupTime", "HadDiabetes", "SmokerStatus", "AgeCategory", "AlcoholDrinkers"
             ];
             numericalFields.forEach(field => data[field] = parseInt(data[field], 10));
@@ -106,19 +135,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Calculate BMI
             data["BMI"] = data["WeightInKilograms"] / (data["HeightInMeters"] ** 2);
-
+            data["HadDepressiveDisorder"] = data["MentalHealthDays"] > 25 ? 1 : 0;
             // Convert Yes/No fields to 1/0
             const booleanFields = [
-                "PhysicalActivities", "HadAsthma", "HadSkinCancer", "HadCOPD",
-                "HadDepressiveDisorder", "HadKidneyDisease", "HadArthritis",
-                "HaveHighCholesterol", "Sensory Impairments", "Vaccinated"
+                "PhysicalActivities", "HadSkinCancer", "HadCOPD",
+                "HadKidneyDisease", "HadArthritis", "HaveHighCholesterol",
+                "Sensory Impairments", "Vaccinated"
             ];
+
             booleanFields.forEach(field => {
                 if (data[field] === "Yes") data[field] = 1;
                 else if (data[field] === "No") data[field] = 0;
             });
 
             data["Mobility"] = data["Mobility"] === "1" ? 1 : 0;
+            data["GeneralHealth"] = computeGeneralHealthScore(data)
 
             // Define the order of keys
             const orderedKeys = [
