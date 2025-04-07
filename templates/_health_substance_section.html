@@ -1,0 +1,60 @@
+{% block content %}
+
+<form id="page-3" class="survey-page">
+    <div class="section-label">SUBSTANCE USE & METABOLIC HEALTH</div>
+
+    <!-- Smoker Status -->
+    <div class="mb-4">
+        <label for="SmokerStatus" class="general-question-label">Do you smoke?</label>
+        <select id="SmokerStatus" name="SmokerStatus" required class="selection-options">
+            <option value="">Select your smoking habit</option>
+            <option value=1>Smoke daily</option>
+            <option value=2>Smoke occasionally</option>
+            <option value=3>Used to smoke</option>
+            <option value=4>Never smoked</option>
+        </select>
+    </div>
+
+    <!-- Alcohol Drinkers -->
+    <div class="mb-4">
+        <label for="AlcoholDrinkers" class="general-question-label">Do you consume alcohol?</label>
+        <select id="AlcoholDrinkers" name="AlcoholDrinkers" required class="selection-options">
+            <option value="">Select an option</option>
+            <option value=1>Yes</option>
+            <option value=0>No</option>
+            <option value=1>Occasionally</option>
+        </select>
+    </div>
+
+    <!-- Had Diabetes -->
+    <div class="mb-4">
+        <label for="HadDiabetes" class="general-question-label">
+            Have you ever been diagnosed with Diabetes ?
+        </label>
+        <select id="HadDiabetes" name="HadDiabetes" required class="selection-options">
+            <option value="">Select an option</option>
+            <option value="1">Yes</option>
+            <option value="2">Yes but only during pregnancy</option>
+            <option value="3">No</option>
+            <option value="4">No but pre-diabetes</option>
+        </select>
+    </div>
+
+    <div class="flex justify-between mt-8">
+        <div class="flex items-center">
+            <button type="submit" class="back-btn">
+                Back
+            </button>
+        </div>
+        <div class="text-gray-700 flex items-center">
+            3 of 5
+        </div>
+        <div class="flex items-center">
+            <button type="submit" class="next-btn">
+                Next
+            </button>
+        </div>
+    </div>
+</form>
+
+{% endblock %}

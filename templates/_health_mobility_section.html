@@ -1,0 +1,70 @@
+{% block content %}
+
+<form id="page-2" class="survey-page">
+    <div class="section-label">PHYSICAL & MENTAL HEALTH</div>
+    <!-- Physical Health Days -->
+    <div class="mb-4">
+        <label for="PhysicalHealthDays" class="general-question-label">
+            Number of Days with Physical Health Issues (in last 30 days)
+        </label>
+        <input type="number" id="PhysicalHealthDays" name="PhysicalHealthDays" min="0" max="30" required
+            placeholder="e.g., 5" class="numeric-options" />
+    </div>
+
+    <!-- Mental Health Days -->
+    <div class="mb-4">
+        <label for="MentalHealthDays" class="general-question-label">
+            Number of Days with Mental Health Issues (in last 30 days)
+        </label>
+        <input type="number" id="MentalHealthDays" name="MentalHealthDays" min="0" max="30" required
+            placeholder="e.g., 3" class="numeric-options" />
+    </div>
+
+    <!-- Physical Activities -->
+    <div class="yes-no-question">
+        <label class="yes-no-question-label">
+            Do you engage in regular physical activities ?
+        </label>
+        <div class="yes-no-container">
+            <label class="flex-1">
+                <input type="radio" name="PhysicalActivities" value="Yes" required class="hidden peer">
+                <div class="yes-no-option">Yes</div>
+            </label>
+            <label class="flex-1">
+                <input type="radio" name="PhysicalActivities" value="No" class="hidden peer">
+                <div class="yes-no-option">No</div>
+            </label>
+        </div>
+    </div>
+
+    <!-- Mobility -->
+    <div class="mb-4">
+        <label for="Mobility" class="general-question-label">
+            How would you describe your mobility ?
+        </label>
+        <select id="Mobility" name="Mobility" required class="selection-options">
+            <option value="">Select an option</option>
+            <option value=0>No Difficulty</option>
+            <option value=1>Some Difficulty</option>
+            <option value=1>Limited Mobility</option>
+        </select>
+    </div>
+
+    <div class="flex justify-between mt-8">
+        <div class="flex items-center">
+            <button type="submit" class="back-btn">
+                Back
+            </button>
+        </div>
+        <div class="text-gray-700 flex items-center">
+            2 of 5
+        </div>
+        <div class="flex items-center">
+            <button type="submit" class="next-btn">
+                Next
+            </button>
+        </div>
+    </div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,107 @@
+{% block content %}
+
+<form id="page-5" class="survey-page">
+    <div class="section-label">MEDICAL HISTORY & CHRONIC CONDITIONS</div>
+
+    <!-- Had Asthma -->
+    <div class="yes-no-question">
+        <label class="yes-no-question-label">
+            Have you ever been diagnosed with Asthma ?
+        </label>
+        <div class="yes-no-container">
+            <label class="flex-1">
+                <input type="radio" name="HadAsthma" value="Yes" required class="hidden peer">
+                <div class="yes-no-option">
+                    Yes
+                </div>
+            </label>
+            <label class="flex-1">
+                <input type="radio" name="HadAsthma" value="No" class="hidden peer">
+                <div class="yes-no-option">
+                    No
+                </div>
+            </label>
+        </div>
+    </div>
+
+    <!-- Had Skin Cancer -->
+    <div class="yes-no-question">
+        <label class="yes-no-question-label">
+            Have you ever been diagnosed with Skin Cancer ?
+        </label>
+        <div class="yes-no-container">
+            <label class="flex-1">
+                <input type="radio" name="HadSkinCancer" value="Yes" required class="hidden peer">
+                <div class="yes-no-option">
+                    Yes
+                </div>
+            </label>
+            <label class="flex-1">
+                <input type="radio" name="HadSkinCancer" value="No" class="hidden peer">
+                <div class="yes-no-option">
+                    No
+                </div>
+            </label>
+        </div>
+    </div>
+
+    <!-- Had COPD -->
+    <div class="yes-no-question">
+        <label class="yes-no-question-label">
+            Have you ever been diagnosed with COPD (Chronic Obstructive Pulmonary Disease)
+            ?
+        </label>
+        <div class="yes-no-container">
+            <label class="flex-1">
+                <input type="radio" name="HadCOPD" value="Yes" required class="hidden peer">
+                <div class="yes-no-option">
+                    Yes
+                </div>
+            </label>
+            <label class="flex-1">
+                <input type="radio" name="HadCOPD" value="No" class="hidden peer">
+                <div class="yes-no-option">
+                    No
+                </div>
+            </label>
+        </div>
+    </div>
+
+    <!-- Had Kidney Disease -->
+    <div class="yes-no-question">
+        <label class="yes-no-question-label">
+            Have you ever been diagnosed with Kidney Disease ?
+        </label>
+        <div class="yes-no-container">
+            <label class="flex-1">
+                <input type="radio" name="HadKidneyDisease" value="Yes" required class="hidden peer">
+                <div class="yes-no-option">
+                    Yes
+                </div>
+            </label>
+            <label class="flex-1">
+                <input type="radio" name="HadKidneyDisease" value="No" class="hidden peer">
+                <div class="yes-no-option">
+                    No
+                </div>
+            </label>
+        </div>
+    </div>
+
+    <div class="flex justify-between mt-8">
+        <div class="flex items-center">
+            <button type="submit" class="back-btn">
+                Back
+            </button>
+        </div>
+        <div class="text-gray-700 flex items-center">
+            5 of 5
+        </div>
+        <div class="flex items-center">
+            <button type="submit" class="submit-btn">
+                Submit
+            </button>
+        </div>
+    </div>
+</form>
+{% endblock %}

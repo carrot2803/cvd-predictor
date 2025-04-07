@@ -1,65 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const form = document.querySelector("form");
-    form.setAttribute("novalidate", "");
-
-    const pages = ["generalHealth", "lifestyle", "medicalHistory"];
-
-    function showPage(pageIndex) {
-        pages.forEach((page, index) => {
-            document.getElementById(page).style.display = index === pageIndex ? "block" : "none";
-        });
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
-    // removes error highlight once input has been provided
-    document.addEventListener('input', (e) => e.target.classList.remove('border-red-500'));
-    document.querySelectorAll('input[type="radio"]').forEach(radio => {
-        radio.addEventListener('click', () => {
-            radio.closest("div").querySelectorAll("div").forEach(button => {
-                button.classList.remove("border-red-500", "animate-[pulse_0.5s_ease-in-out]");
-            });
-        });
-    });
-
-    // custom validation to highlight all invalid inputs
-    function validateFormPage(pageIndex) {
-        const page = document.getElementById(pages[pageIndex]);
-        const inputs = page.querySelectorAll("input, select");
-        let isValid = true;
-        const processedRadioGroups = new Set();
-
-        inputs.forEach(input => {
-            if (!input.checkValidity()) {
-                input.reportValidity();
-                if (input.type === "radio") {
-                    if (processedRadioGroups.has(input.name)) return;
-                    processedRadioGroups.add(input.name);
-                    document.querySelectorAll(`input[name="${input.name}"]`).forEach(radio => {
-                        radio.closest("label").querySelector("div").classList.add("border-red-500", "animate-[pulse_0.5s_ease-in-out]");
-                    });
-                }
-                else {
-                    input.classList.add("border-red-500", "animate-[pulse_0.5s_ease-in-out]");
-                }
-                isValid = false;
-            }
-            else {
-                if (input.type === "radio") {
-                    if (processedRadioGroups.has(input.name)) return;
-                    processedRadioGroups.add(input.name);
-                    document.querySelectorAll(`input[name="${input.name}"]`).forEach(radio => {
-                        radio.closest("label").querySelector("div").classList.remove("border-red-500", "animate-[pulse_0.5s_ease-in-out]");
-                    });
-                }
-                else {
-                    input.classList.remove("border-red-500", "animate-[pulse_0.5s_ease-in-out]");
-                }
-            }
-        });
-        if (!isValid)
-            showPage(pageIndex);
-        return isValid;
-    }
+    const forms = document.querySelectorAll('.survey-page');
 
     function computeGeneralHealthScore(data) {
         let score = 4;
@@ -90,21 +30,22 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    form.addEventListener("submit", async function (event) {
-        event.preventDefault(); // Prevent default form submission
+    forms.forEach(form => {
+        form.addEventListener("submit", async function (event) {
+            event.preventDefault();
+            const currentPage = parseInt(this.id.replace("page-", ""));
+            if (currentPage != forms.length) {
+                navigateToPage(currentPage + 1);
+                return;
+            }
 
-        var formIsValid = true;
-        pages.forEach((page, index) => {
-            if (!validateFormPage(2 - index))
-                formIsValid = false;
-        });
-
-        if (formIsValid) {
-            let formData = new FormData(form);
             let data = {};
 
-            formData.forEach((value, key) => {
-                data[key] = value;
+            forms.forEach(form => {
+                const pageFormData = new FormData(form);
+                pageFormData.forEach((value, key) => {
+                    data[key] = value;
+                });
             });
 
             // Convert necessary fields to numbers
@@ -190,32 +131,29 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.error("Error submitting form:", error);
                 alert("An error occurred. Please check your internet connection.");
             }
-        }
+        });
     });
 
-    const generalHealthSection = document.getElementById("generalHealth");
-    const lifestyleSection = document.getElementById("lifestyle");
-    const medicalHistorySection = document.getElementById("medicalHistory");
-    const generalHealthNextButton = generalHealthSection.querySelector(".next-btn");
-    const lifestyleBackButton = lifestyleSection.querySelector(".back-btn");
-    const lifestyleNextButton = lifestyleSection.querySelector(".next-btn");
-    const medicalHistoryBackButton = medicalHistorySection.querySelector(".back-btn");
 
-    generalHealthNextButton.addEventListener("click", function () {
-        showPage(1);
+    document.querySelectorAll(".back-btn").forEach(button => {
+        button.addEventListener("click", async function (event) {
+            event.preventDefault();
+            const currentForm = this.closest(".survey-page");
+            const currentPage = parseInt(currentForm.id.replace("page-", ""));
+            navigateToPage(currentPage - 1);
+        });
     });
 
-    lifestyleBackButton.addEventListener("click", function () {
-        showPage(0);
-    });
+    function navigateToPage(pageNum) {
+        document.querySelectorAll(".survey-page").forEach(form => {
+            form.classList.add("hidden");
+        });
+        const form = document.getElementById(`page-${pageNum}`);
+        form.classList.remove("hidden");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
 
-    lifestyleNextButton.addEventListener("click", function () {
-        showPage(2);
-    });
-
-    medicalHistoryBackButton.addEventListener("click", function () {
-        showPage(1);
-    });
-
-    showPage(0);
+    if (document.getElementById("healthSurveyForm")) {
+        navigateToPage(1);
+    }
 });
