@@ -12,6 +12,10 @@ document.addEventListener("DOMContentLoaded", function () {
         "back-btn": "back-btn bg-white text-gray-700 border-2 border-blue-600 hover:bg-blue-600 hover:text-white font-bold py-1 px-4 rounded-md focus:outline-none focus:shadow-outline",
         "next-btn": "bg-white text-gray-700 border-2 border-blue-600 hover:bg-blue-600 hover:text-white font-bold py-1 px-4 rounded-md focus:outline-none focus:shadow-outline",
         "submit-btn": "bg-white text-gray-700 border-2 border-blue-600 hover:bg-blue-600 hover:text-white font-bold py-1 px-4 rounded-md focus:outline-none focus:shadow-outline",
+        "nav-btn": "flex items-center w-1/3",
+        "nav-next-btn": "flex items-center justify-end w-1/3",
+        "navigation-section": "flex justify-between mt-8",
+        "status-bar": "text-gray-700 flex items-center justify-center w-1/3",
     };
 
     function applyStyles() {
