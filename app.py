@@ -5,9 +5,7 @@ import polars as pl
 from xgboost import XGBClassifier
 
 app = Flask(__name__)
-model: XGBClassifier = pickle.load(open("models/lightgbm_cvd.pkl", "rb"))
-# model = XGBClassifier()
-# model.load_model("models/xgb_cvd.json")
+model: XGBClassifier = pickle.load(open("data/processed/models/xgb_cvd.pkl", "rb"))
 
 
 @app.route("/")
@@ -19,7 +17,7 @@ def home() -> str:
 def predict() -> Response:
     print(request.json)
     df = pl.DataFrame(request.json)
-    matrix: np.ndarray = model.predict_proba(df[0])
+    matrix: np.ndarray = model.predict_proba(df[0].to_numpy())
     prediction = str(matrix[:, 1][0])
     print("Prediction is ", prediction)
     return jsonify(message=str(prediction))
