@@ -1,0 +1,15 @@
+{% block content %}
+
+<div class="mb-4">
+    <label for="{{ question.id }}" class="block text-gray-700 text-md mb-2">
+        {{ question.label|safe }}
+    </label>
+    <select id="{{ question.id }}" name="{{ question.id }}"
+        class="appearance-none border-2 rounded-lg w-full py-2 px-3 text-gray-700 focus:outline-none" required>
+        {% for option in question.options %}
+        <option value="{{ option.value }}">{{ option.text }}</option>
+        {% endfor %}
+    </select>
+</div>
+
+{% endblock %}

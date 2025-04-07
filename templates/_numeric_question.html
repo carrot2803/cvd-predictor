@@ -1,0 +1,13 @@
+{% block content %}
+
+<div class="mb-4">
+    <label for="{{ question.id }}" class="block text-gray-700 text-md mb-2">
+        {{ question.label|safe }}
+    </label>
+    <input type="number" id="{{ question.id }}" name="{{ question.id }}"
+        class="appearance-none border-2 rounded-lg w-full py-2 px-3 text-gray-700 focus:outline-none"
+        min="{{ question.min }}" max="{{ question.max }}" placeholder="{{ question.placeholder }}" required
+        {{ 'step=0.1' if question.step }}>
+</div>
+
+{% endblock %}
