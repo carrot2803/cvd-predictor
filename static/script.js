@@ -136,8 +136,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     document.querySelectorAll(".back-btn").forEach(button => {
-        button.addEventListener("click", async function (event) {
-            event.preventDefault();
+        button.addEventListener("click", function () {
             const currentForm = this.closest(".survey-page");
             const currentPage = parseInt(currentForm.id.replace("page-", ""));
             navigateToPage(currentPage - 1);
