@@ -44,10 +44,10 @@ All raw source files will be available on SharePoint soon.
 
 ## Outstanding Todos  
 
-- [ ] Balance Data – Apply resampling (SMOTE, oversampling, undersampling) to reduce model bias.  
-- [ ] Optimize Models – Tune hyperparameters for Logistic Regression, Random Forest, and XGBoost.  
-- [ ] Streamline Data Cleaning – Finalize categorical encoding and outlier handling.  
-- [ ] Automate Data Conversion – Improve .ascii to CSV pipeline, removing manual steps.  
+- [x] Balance Data – Scrapped SMOTE bad 
+- [x] Optimize Models – Tune hyperparameters for Logistic Regression, Random Forest, and XGBoost.  
+- [x] Streamline Data Cleaning – Finalize categorical encoding and outlier handling.  
+- [x] Automate Data Conversion – Improve .ascii to CSV pipeline, removing manual steps.  
 - [ ] Ensure Data Access – Secure alternative documentation retrieval methods.  
 
 ## Package Structure

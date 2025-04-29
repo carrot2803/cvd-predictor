@@ -52,38 +52,32 @@ def plot_feature_importances(model, X, top_n=15, model_name="Model") -> None:
     - top_n: The number of top features to display (default is 15).
     - model_name: A name to display in the plot title.
     """
-    if hasattr(model, "feature_importances_"):
-        # Create a Polars DataFrame
-        df = pl.DataFrame(
-            {"feature": X.columns, "importance": model.feature_importances_}
-        )
+    # if hasattr(model, "feature_importances_"):
+    # print(f"{model_name} does not have feature_importances_ attribute.")
+    # return
+    # Create a Polars DataFrame
+    df = pl.DataFrame({"feature": X.columns, "importance": model.feature_importances_})
 
-        df_top: pl.DataFrame = (
-            df.sort("importance", descending=True)
-            .head(top_n)
-            .sort("importance", descending=False)
-        )
+    df_top: pl.DataFrame = df.sort("importance", descending=True).head(top_n)
+    df_top = df_top.sort("importance", descending=False)
 
-        features = df_top["feature"].to_list()
-        importances = df_top["importance"].to_list()
+    features = df_top["feature"].to_list()
+    importances = df_top["importance"].to_list()
 
-        colors: list[str] = [
-            f"rgb({int(255 * (1 - i / len(features)))}, {int(100 * (1 - i / len(features)))}, {int(200 * (i / len(features)))})"
-            for i in range(len(features))
-        ]
+    colors: list[str] = [
+        f"rgb({int(255 * (1 - i / len(features)))}, {int(100 * (1 - i / len(features)))}, {int(200 * (i / len(features)))})"
+        for i in range(len(features))
+    ]
 
-        fig = go.Figure(
-            go.Bar(
-                x=importances, y=features, orientation="h", marker=dict(color=colors)
-            )
-        )
+    fig = go.Figure(
+        go.Bar(x=importances, y=features, orientation="h", marker=dict(color=colors))
+    )
 
-        fig.update_layout(
-            title=f"Top {top_n} Feature Importances - {model_name}",
-            xaxis_title="Feature Importance Score",
-            yaxis_title="Features",
-            margin=dict(l=150),
-        )
-        fig.show()
-    else:
-        print(f"{model_name} does not have feature_importances_ attribute.")
+    fig.update_layout(
+        title=f"Top {top_n} Feature Importances - {model_name}",
+        xaxis_title="Feature Importance Score",
+        yaxis_title="Features",
+        margin=dict(l=150),
+    )
+
+    fig.show()
