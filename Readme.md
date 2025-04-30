@@ -1,11 +1,13 @@
 ## Cardiovascular Disease Prediction  
-This project focuses on developing a cardiovascular disease prediction model, which will be integrated into a React/Flask web application. The model will analyze user inputs to assess CVD risk efficiently.
+This project involves developing a cardiovascular disease prediction model, which will be integrated into a React/Flask web application. The model analyzes user inputs to efficiently assess CVD risk.
+
+This repository contains the backend with all core data science logic. The frontend UI can be found [here](https://github.com/carrot2803/cvd-app) or in the About section.
+
 
 ## Installation Guide
 
-There are several ways you can install the application
-<!-- <details>  -->
-<!-- <summary><code>There are several ways you can install the application</code></summary>  -->
+<details> 
+<summary><code>There are several ways you can install the application</code></summary> 
 
 1. **Clone the repository**:
     ```sh
@@ -32,15 +34,79 @@ There are several ways you can install the application
     ```
 
 #### **Alernative**
+
 - [Downloading repository as ZIP](https://github.com/carrot2803/cvd-predictor/archive/refs/heads/master.zip)
 - Running the following command in a terminal, assuming you have [GitHub CLI](https://cli.github.com/) installed:
+    ```sh
+        gh repo clone carrot2803/reading-skills-annotator
+        cd reading-skills-annotator
+    ```
+After obtaining the code using one of the above methods, follow steps 2 and 3 from the main installation guide to set up a virtual environment and install the required packages.
 
-<!-- </details> -->
+</details>
 
 ## Getting Started  
 
-First, run `variable_layout.py` to scrape variable names from the CSV. Next, execute `convert_ascii.R` to process `LLCP2023.ASC`. Once converted, run the initial processing notebook, followed by the training notebook to begin model training.  
+<details>
+<summary><code>To begin using the project, there are three recommended options:</code></summary>
+
+Start by running `variable_layout.py` to extract variable names from the CSV. Then, execute `convert_ascii.R` to process `LLCP2023.ASC`. Once converted, run the initial processing notebook, followed by the training notebook to begin model training.  
 All raw source files will be available on SharePoint soon.
+
+1. **Running the Predefined Scripts**
+
+    - **Command-Line Script** (`main.py`):  
+    Run this script from the terminal:
+    ```bash
+        python main.py
+    ```
+
+    - **Web Application Script** (`app.py`):  
+    Launch the web interface:
+    ```bash
+        python app.py
+    ```
+    
+    View the web API at: [demo link](https://cvd-predictor.azurewebsites.net)  
+    View the web UI at: [demo link](https://carrot2803.github.io/cvd-app)
+
+2. **Exploring the Jupyter Notebooks**  
+
+    Located in the `/notebooks` folder:
+
+    
+    - `demo.ipynb`: Practical demonstration
+    - `EDA.ipynb`: Exploratory data analysis
+    - `initial_processing.ipynb`: Initial data cleaning steps
+    - `training.ipynb`: Model training process
+
+3. **Setting Up the CVD Predictor Manually**  
+
+You can also create your own Python file and initialize the predictor:
+
+```python
+from CVD import CVDClassifier
+
+# Specify your sample JSON file
+sample_json = "~/~.json"
+
+# Instantiate the CVD Classifier
+cvd = CVDClassifier()
+
+# Print the prediction and top contributing feature
+print(cvd.predict(sample_json))
+```
+
+Replace `sample_json` with the path to your own JSON-formatted data. This example demonstrates how to integrate the CVD predictor into a custom setup.
+
+</details>
+
+## Routes
+
+### Core Routes
+
+1. <u>/</u> [GET]: Returns "Healthy" with the corresponding status code.  
+2. <u>/predict</u> [POST]: Returns a CVD prediction and the top 5 contributing factors.
 
 ## Outstanding Todos  
 
@@ -52,14 +118,31 @@ All raw source files will be available on SharePoint soon.
 
 ## Package Structure
 
-    root/                          
-    ├── notebooks/
+    root/
+    ├── CVD/
+    │   ├── models/
+    │   │   └── classifier.py      # predictive model
+    │   ├── utils/                 # helper functions
+    │   │   └── encode.py 
+    │   ├── visuals/               # model visulization 
+    │   │   └── bar.py
+    │   └── constants.py                     
+    ├── notebooks/                 # scientific notebooks 
     │   └── training.ipynb
-    ├── scripts/
+    ├── scripts/                   # scraping and feature selection
     │   └── convert_ascii.R
     ├── data/
-    │   └── raw/
+    │   ├── models/                # pickled tuned models
+    │   │   └── lgb_cvd.pkl
+    │   ├── processed/             # pngs and html visualizations
+    │   │   ├── html/
+    │   │   └── imgs/
+    │   ├── intermediate/          # intermidate data 
+    │   │   └──heart_cdc_2023.csv
+    │   └── raw/                   # unrefined data 
     │       └── LLCP2023.ASC
     ├── .gitignore
+    ├── main.py                    # main script
+    ├── app.py                     # rest web api
     ├── Readme.md
-    └── requirements.txt
+    └── requirements.txt  
