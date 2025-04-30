@@ -50,8 +50,9 @@ After obtaining the code using one of the above methods, follow steps 2 and 3 fr
 <details>
 <summary><code>To begin using the project, there are three recommended options:</code></summary>
 
-Start by running `variable_layout.py` to extract variable names from the CSV. Then, execute `convert_ascii.R` to process `LLCP2023.ASC`. Once converted, run the initial processing notebook, followed by the training notebook to begin model training.  
-All raw source files will be available on SharePoint soon.
+Start by running `variable_layout.py` to extract variable names from the [CDC website](https://www.cdc.gov/brfss/annual_data/2023/llcp_varlayout_23_onecolumn.html). Then, execute `convert_ascii.R` to process `LLCP2023.ASC`. Once converted, run the initial processing notebook, followed by the training notebook to begin model training.
+
+All raw source files are available on [SharePoint](https://bit.ly/4jVDfJQ).
 
 1. **Running the Predefined Scripts**
 
