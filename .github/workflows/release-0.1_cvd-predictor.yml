@@ -7,6 +7,7 @@ name: Build and deploy Python app to Azure Web App - cvd-predictor
 on:
   push:
     branches:
+      - production
       - release-0.1
   workflow_dispatch:
 
