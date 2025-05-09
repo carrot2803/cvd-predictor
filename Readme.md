@@ -52,7 +52,7 @@ After obtaining the code using one of the above methods, follow steps 2 and 3 fr
 
 Start by running `variable_layout.py` to extract variable names from the [CDC website](https://www.cdc.gov/brfss/annual_data/2023/llcp_varlayout_23_onecolumn.html). Then, execute `convert_ascii.R` to process `LLCP2023.ASC`. Once converted, run the initial processing notebook, followed by the training notebook to begin model training.
 
-All raw source files are available on [SharePoint](https://bit.ly/4jVDfJQ).
+All raw source files are available on [Google Drive](https://drive.google.com/drive/folders/1eaWFC9iE5zox6eTNjFfcdIPvt6OK_IHS?usp=sharing).
 
 1. **Running the Predefined Scripts**
 
