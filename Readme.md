@@ -75,11 +75,14 @@ All raw source files are available on [Google Drive](https://drive.google.com/dr
 
     Located in the `/notebooks` folder:
 
+    - `initial_processing.ipynb`: Cleans the CDC BRFSS dataset and stores it in `heart_cdc_2023.parquet`.
     
-    - `demo.ipynb`: Practical demonstration
-    - `EDA.ipynb`: Exploratory data analysis
-    - `initial_processing.ipynb`: Initial data cleaning steps
-    - `training.ipynb`: Model training process
+    - `EDA.ipynb`: This notebook performs exploratory data analysis on the cleaned dataset highlighting key trends and insights in the dataset.
+    
+    - `training.ipynb`: Trains and evaluates several classification models for CVD prediction using an 80/20 test-train split based on the cleaned dataset stored in `heart_cdc_2023.parquet`.
+    
+    - `demo.ipynb`: Demonstrates the `CVDClassifier` which accepts JSON as input and outputs the CVD risk probability along with the top `n` contributing features.
+
 
 3. **Setting Up the CVD Predictor Manually**  
 
@@ -99,6 +102,61 @@ print(cvd.predict(sample_json))
 ```
 
 Replace `sample_json` with the path to your own JSON-formatted data. This example demonstrates how to integrate the CVD predictor into a custom setup.
+
+
+<details>
+<summary>Below is an example of someone with a high CVD risk of 84.0%.</summary>
+
+```
+{
+    "Sex": 1,                   # male
+    "AgeCategory": 8,           # age 55-59
+    "HeightInMeters": 1.84,
+    "WeightInKilograms": 70,
+    "BMI": 20.7,                
+    "GeneralHealth": 4,         # fair health
+    "PhysicalActivities": 1,    # engages in regular physical activity
+    "HadAsthma": 1,
+    "HadCOPD": 1,
+    "HadKidneyDisease": 1,
+    "HadArthritis": 0,
+    "HadDiabetes": 4,           # pre-diabetes
+    "SmokerStatus": 0,
+    "AlcoholDrinkers": 0,
+    "HaveHighCholesterol": 1,
+    "Sensory Impairments": 1,
+    "Vaccinated": 0,
+    "Mobility": 1,
+}
+```
+</details>
+
+<details>
+<summary>Decreasing BMI and age can result in a lower CVD risk. Below is an example of someone with a low CVD risk of 0%.</summary>
+
+```
+{
+    "Sex": 1,                   # male
+    "AgeCategory": 1,           # age 18-29
+    "HeightInMeters": 1.70,
+    "WeightInKilograms": 56,
+    "BMI": 19.4,                
+    "GeneralHealth": 2,         # good
+    "PhysicalActivities": 1,    # engages in regular physical activity
+    "HadAsthma": 0,
+    "HadCOPD": 0,
+    "HadKidneyDisease": 0,
+    "HadArthritis": 0,
+    "HadDiabetes": 3,           # no
+    "SmokerStatus": 0,
+    "AlcoholDrinkers": 1,
+    "HaveHighCholesterol": 0,
+    "Sensory Impairments": 0,
+    "Vaccinated": 0,
+    "Mobility": 0,
+}
+```
+</details>
 
 </details>
 
