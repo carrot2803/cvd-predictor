@@ -13,12 +13,12 @@ def home() -> str:
     return "Healthy"
 
 
-@app.route("/predict", methods=["POST"])
-def predict() -> Response:
-    prob,top_n  = cvd.predict(request.json)
-    results: dict[str, str|list[dict]] ={
+@app.route("/predict/<int:top_n>", methods=["POST"])
+def predict(top_n: int) -> Response:
+    prob, top_features = cvd.predict(request.json, top_n)
+    results: dict[str, str | list[dict]] = {
         "probability": prob,
-        "top_features": top_n,
+        "top_features": top_features,
     }
     return jsonify(results)
 

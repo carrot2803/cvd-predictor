@@ -3,6 +3,7 @@ from sklearn.metrics import (
     balanced_accuracy_score,
     f1_score,
     recall_score,
+    roc_curve,
 )
 from sklearn.metrics import confusion_matrix, precision_score, roc_auc_score
 import plotly.graph_objects as go
@@ -24,4 +25,5 @@ def get_metrics(y_true: np.ndarray, y_pred: np.ndarray, model_name: str) -> dict
         "Specificity": specificity,
         "F1 Score": f1_score(y_true, y_pred),
         "ROC AUC": roc_auc_score(y_true, y_pred),
+        "ROC Curve": roc_curve(y_true, y_pred),
     }
