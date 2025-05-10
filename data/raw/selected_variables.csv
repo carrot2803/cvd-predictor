@@ -1,3 +1,31 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:a2cb59b43864e4f21984f676afe551e2a1433c79ca900d256f371fa4c417f2a5
-size 3209
+Variable,Description,Renamed
+SEXVAR,Sex of Respondent,Sex
+GENHLTH,Would you say that in general your health is:,GeneralHealth
+PHYSHLTH,"Now thinking about your physical health, which includes physical illness and injury, for how many days during the past 30 days was your physical health not good?",PhysicalHealthDays
+MENTHLTH,"Now thinking about your mental health, which includes stress, depression, and problems with emotions, for how many days during the past 30 days was your mental health not good?",MentalHealthDays
+CHECKUP1,About how long has it been since you last visited a doctor for a routine checkup?,LastCheckupTime
+EXERANY2,"During the past month, other than your regular job, did you participate in any physical activities or exercises such as running, calisthenics, golf, gardening, or walking for exercise?",PhysicalActivities
+CVDINFR4,"(Ever told) you had a heart attack, also called a myocardial infarction?",HadHeartAttack
+CVDCRHD4,(Ever told) (you had) angina or coronary heart disease?,HadAngina
+CVDSTRK3,(Ever told) (you had) a stroke.,HadStroke
+ASTHMA3,(Ever told) (you had) asthma?,HadAsthma
+CHCSCNC1,(Ever told) (you had) skin cancer that is not melanoma?,HadSkinCancer
+CHCCOPD3,"(Ever told) (you had) C.O.P.D. (chronic obstructive pulmonary disease), emphysema or chronic bronchitis?",HadCOPD
+ADDEPEV3,"(Ever told) (you had) a depressive disorder (including depression, major depression, dysthymia, or minor depression)?",HadDepressiveDisorder
+CHCKDNY2,"Not including kidney stones, bladder infection or incontinence, were you ever told you had kidney disease?",HadKidneyDisease
+HAVARTH4,"(Ever told) (you had) some form of arthritis, rheumatoid arthritis, gout, lupus, or fibromyalgia?  (Arthritis diagnoses include: rheumatism, polymyalgia rheumatica; osteoarthritis (not osteporosis); tendonitis, bursitis, bunion, tennis elbow; carpal tunnel syndrome, tarsal tunnel syndrome; joint infection, etc.)",HadArthritis
+DIABETE4,(Ever told) (you had) diabetes?,HadDiabetes
+DEAF,Are you deaf or do you have serious difficulty hearing?,DeafOrHardOfHearing
+BLIND,"Are you blind or do you have serious difficulty seeing, even when wearing glasses?",BlindOrVisionDifficulty
+DIFFWALK,Do you have serious difficulty walking or climbing stairs?,DifficultyWalking
+DIFFDRES,Do you have difficulty dressing or bathing?,DifficultyDressingBathing
+DIFFALON,"Because of a physical, mental, or emotional condition, do you have difficulty doing errands alone such as visiting a doctorÂ´s office or shopping?",DifficultyErrands
+_SMOKER3,Four,SmokerStatus
+_AGEG5YR,Fourteen,AgeCategory
+HTM4,Reported height in meters,HeightInMeters
+WTKG3,Reported weight in kilograms,WeightInKilograms
+_BMI5,Body Mass Index (BMI),BMI
+DRNKANY6,Adults who reported having had at least one drink of alcohol in the past 30 days.,AlcoholDrinkers
+FLUSHOT7,"During the past 12 months, have you had either flu vaccine that was sprayed in your nose or flu shot injected into your arm?",FluVaxLast12
+PNEUVAC4,Have you ever had a pneumonia shot also known as a pneumococcal vaccine?,PneumoVaxEver
+TOLDHI3,"Have you ever been told by a doctor, nurse or other health professional that your cholesterol is high?",HaveHighCholesterol
