@@ -165,7 +165,7 @@ Replace `sample_json` with the path to your own JSON-formatted data. This exampl
 ### Core Routes
 
 1. <u>/</u> [GET]: Returns "Healthy" with the corresponding status code.  
-2. <u>/predict/{int: N} ></u> [POST]: Returns a CVD prediction probability and the top N contributing factors.
+2. <u>/predict/{N} </u> [POST]: Returns a CVD prediction probability and the top N contributing factors.
 
 ## Outstanding Todos  
 
@@ -173,7 +173,7 @@ Replace `sample_json` with the path to your own JSON-formatted data. This exampl
 - [x] Optimize Models – Tune hyperparameters for Logistic Regression, Random Forest, and XGBoost.  
 - [x] Streamline Data Cleaning – Finalize categorical encoding and outlier handling.  
 - [x] Automate Data Conversion – Improve .ascii to CSV pipeline, removing manual steps.  
-- [ ] Ensure Data Access – Secure alternative documentation retrieval methods.  
+- [x] Ensure Data Access – Secure alternative documentation retrieval methods.  
 
 ## Package Structure
 
