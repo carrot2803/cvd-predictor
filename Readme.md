@@ -107,7 +107,7 @@ Replace `sample_json` with the path to your own JSON-formatted data. This exampl
 ### Core Routes
 
 1. <u>/</u> [GET]: Returns "Healthy" with the corresponding status code.  
-2. <u>/predict</u> [POST]: Returns a CVD prediction and the top 5 contributing factors.
+2. <u>/predict/{int: N} ></u> [POST]: Returns a CVD prediction probability and the top N contributing factors.
 
 ## Outstanding Todos  
 
