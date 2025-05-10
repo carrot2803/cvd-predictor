@@ -13,9 +13,7 @@ import numpy as np
 
 def get_metrics(y_true: np.ndarray, y_pred: np.ndarray, model_name: str) -> dict:
     tn, fp, fn, tp = confusion_matrix(y_true, y_pred).ravel()
-    sensitivity: float = tp / (tp + fn) if (tp + fn) > 0 else 0.0
     specificity: float = tn / (tn + fp) if (tn + fp) > 0 else 0.0
-    balanced_acc = balanced_accuracy_score(y_true, y_pred)
 
     return {
         "Model": model_name,
@@ -24,6 +22,5 @@ def get_metrics(y_true: np.ndarray, y_pred: np.ndarray, model_name: str) -> dict
         "Recall": recall_score(y_true, y_pred),
         "Specificity": specificity,
         "F1 Score": f1_score(y_true, y_pred),
-        "ROC AUC": roc_auc_score(y_true, y_pred),
-        "ROC Curve": roc_curve(y_true, y_pred),
+        "ROC AUC": roc_auc_score(y_true, y_pred)
     }
